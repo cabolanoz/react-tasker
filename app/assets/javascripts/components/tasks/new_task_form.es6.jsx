@@ -10,7 +10,7 @@ class NewTaskForm extends BaseComponent {
       description: ''
     }
 
-    this._bind('onTitleChange', 'onDescriptionChange');
+    this._bind('onTitleChange', 'onDescriptionChange', 'onFormSubmit');
   }
 
   onTitleChange(event) {
@@ -21,9 +21,24 @@ class NewTaskForm extends BaseComponent {
     this.setState({ description: event.target.value });
   }
 
+  onFormSubmit(event) {
+    event.preventDefault();
+
+    $.ajax({
+      url: '/tasks.json',
+      type: 'POST',
+      dataType: 'JSON',
+      contentType: 'application/json',
+      processData: false,
+      data: JSON.stringify({
+        task: this.state
+      })
+    });
+  }
+
   render() {
     return(
-      <form action="/tasks" className="form-horizontal" method="post">
+      <form action="/tasks" className="form-horizontal" method="post" onSubmit={ this.onFormSubmit }>
         <fieldset>
           <legend>New Task</legend>
           <ReactInputWithLabel
