@@ -32,6 +32,7 @@ class NewTaskForm extends BaseComponent {
             onChange={ this.onTitleChange }
             value={ this.state.title } />
           <ReactInputWithLabel
+            elementType="textarea"
             id="description"
             labelText="Description"
             onChange={ this.onDescriptionChange }
