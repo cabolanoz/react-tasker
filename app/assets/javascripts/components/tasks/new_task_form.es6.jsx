@@ -23,7 +23,7 @@ class NewTaskForm extends BaseComponent {
 
   render() {
     return(
-      <form className="form-horizontal">
+      <form action="/tasks" className="form-horizontal" method="post">
         <fieldset>
           <legend>New Task</legend>
           <ReactInputWithLabel
@@ -38,6 +38,11 @@ class NewTaskForm extends BaseComponent {
             onChange={ this.onDescriptionChange }
             value={ this.state.description } />
         </fieldset>
+        <div className="form-group">
+          <div className="col-lg-10 col-lg-offset-2">
+            <button className="btn btn-primary" type="submit">Save</button>
+          </div>
+        </div>
       </form>
     );
   }
